@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1206.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ism.gestion.controllers.ProfesseurController">
+   <children>
+      <BorderPane layoutX="214.0" layoutY="146.0" prefHeight="602.0" prefWidth="756.0" style="-fx-background-color: white;" stylesheets="@../styles/Style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="108.0" prefWidth="756.0" style="-fx-background-color: #F58612;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="559.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="79.0" text="Ajouter" />
+                  <Button layoutX="653.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleAffecter" prefHeight="25.0" prefWidth="85.0" text="Affecter" />
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tblvProfesseur" onMouseClicked="#getSelected" prefHeight="495.0" prefWidth="756.0">
+                    <columns>
+                      <TableColumn fx:id="tblcId" prefWidth="75.0" text="ID" />
+                      <TableColumn fx:id="tblcNci" prefWidth="217.0" text="NCI" />
+                        <TableColumn fx:id="tblcNomComplet" prefWidth="270.0" text="Prenom &amp; Nom" />
+                        <TableColumn fx:id="tblcGrade" prefWidth="193.0" text="Grade" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </center>
+         <right>
+            <AnchorPane prefHeight="495.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tblvClasse" layoutX="78.0" layoutY="105.0" prefHeight="291.0" prefWidth="303.0">
+                    <columns>
+                      <TableColumn fx:id="tblcIdClasse" prefWidth="125.0" text="ID" />
+                      <TableColumn fx:id="tblcLibelle" prefWidth="177.0" text="Libelle" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>
