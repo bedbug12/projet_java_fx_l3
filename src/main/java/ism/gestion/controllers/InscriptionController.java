@@ -1,6 +1,8 @@
 package ism.gestion.controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import ism.gestion.App;
 import ism.gestion.core.Fabrique;
@@ -12,14 +14,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 
-public class InscriptionController {
+public class InscriptionController implements Initializable {
 
     @FXML
     private TextField txtAnnee;
+
+    @FXML
+    Text lblErrorClasse;
 
     @FXML
     private TextField txtClasse;
@@ -42,8 +49,10 @@ public class InscriptionController {
        
         String nomComplet=txtNomComplet.getText().trim();
         String tuteur=txtTuteur.getText().trim();
-        Etudiant etudiant =Fabrique.ACService().inscrireEtudiant(new Inscription(annee, Etat.Inscrit), 
-                                                                Fabrique.RPService().findClasseByLibelle(libelle), 
+        Classe classe=Fabrique.RPService().findClasseByLibelle(libelle);
+        if (classe!=null) {
+            Etudiant etudiant =Fabrique.ACService().inscrireEtudiant(new Inscription(annee, Etat.Inscrit), 
+                                                                classe, 
                                                                 new Etudiant(nomComplet, tuteur)); 
         Alert alert= new Alert(AlertType.INFORMATION);
         alert.setTitle("Gestion Etudiant");
@@ -60,12 +69,22 @@ public class InscriptionController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }else{
+        lblErrorClasse.setVisible(true); 
     }
+        }
+        
 
     @FXML
     void handleGoBack() throws IOException {
         App.setRoot("accueille");
        
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
+        lblErrorClasse.setVisible(false); 
     }
     
 
